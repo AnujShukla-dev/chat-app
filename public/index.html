@@ -5,12 +5,30 @@
     </head>
     <body>
         Chat App
+        <div id = "messages"></div>
         <form id="message-form">
             <input placeholder="Enter Message!">
             <button>Send</button>
 
         </form>
         <button id="send-location">Send Location</button>
+        <script id ="message-template" type="text/html">
+            <div>
+                <p>{{createdAt}}-{{message}}</p>
+            <div>
+        </script>
+        <script id ="location-message-template" type="text/html">
+            <div>
+               <span>
+                {{createdAt}}-
+                <a href={{locationLink}} target="_blank">Check Location On Map</a>
+               </span>
+                
+            <div>
+        </script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.1/mustache.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.2/qs.js" integrity="sha512-xjPY2pO1GsrSGApvDELRMdGhJt/kTYnBbfR7VPLh/xgyJdN1gCZkz8Ru93f/rFN6Es48vhLU2RiZPylvRrieXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src = "/socket.io/socket.io.js"></script>
         <script src = "/js/chat.js"></script>
     </body>

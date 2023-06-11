@@ -1,7 +1,27 @@
 const socket = io();
+const messages = document.querySelector('#messages') 
+
+//Templates
+const messageTemplate = document.querySelector('#message-template').innerHTML
+const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML
 socket.on("welcomeMessage", (message) => {
   console.log(message);
+  const htmlMessage = Mustache.render(messageTemplate,{
+    message:message.text,
+    createdAt:moment(message.createdAt).format('h:mm a')
+    });
+   messages.insertAdjacentHTML('beforeend', htmlMessage)
+
 });
+socket.on("locationMessage", (message) => {
+    console.log(message.url);
+    const htmlLocation = Mustache.render(locationMessageTemplate,{
+        locationLink:message.url,
+        createdAt:moment(message.createdAt).format('h:mm a')
+    });
+    messages.insertAdjacentHTML('beforeend',htmlLocation)
+  
+  });
 //server(emit)-->client(receive) -- acknowledgement -->server
 //cleint (emit) -->server(receive) --acknowledegement --> client
 
